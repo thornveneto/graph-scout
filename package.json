@@ -1,0 +1,30 @@
+{
+  "name": "graph-scout",
+  "version": "0.0.1",
+  "description": "Basic graph traversal tools",
+  "main": "index.js",
+  "repository": "git@github.com:thornveneto/graph-scout.git",
+  "author": "thornveneto",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "jest --watch",
+    "compile": "tsc src/*.ts --declaration --emitDeclarationOnly --downlevelIteration --declarationDir types",
+    "build": "rollup --config --sourcemap"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "@types/jest": "^27.0.1",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6",
+    "rollup": "^2.56.2",
+    "ts-loader": "^9.2.5",
+    "tslib": "^2.3.1",
+    "typescript": "^4.3.5"
+  }
+}
