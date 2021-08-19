@@ -6,7 +6,7 @@
   "repository": "git@github.com:thornveneto/graph-scout.git",
   "author": "thornveneto",
   "license": "MIT",
-  "private": true,
+  "private": null,
   "scripts": {
     "test": "jest --watch",
     "compile": "tsc src/*.ts --declaration --emitDeclarationOnly --downlevelIteration --declarationDir types",
