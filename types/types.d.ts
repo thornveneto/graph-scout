@@ -18,3 +18,4 @@ export interface GraphDataAccess<V, E> {
     edgeIsEdgeDirectional: (edgePk: string) => boolean;
     isDirectionalEdgeBiDirectional: (edgePk: string) => boolean;
 }
+//# sourceMappingURL=types.d.ts.map

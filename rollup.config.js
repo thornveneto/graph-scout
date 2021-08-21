@@ -5,7 +5,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      dir: 'dist',
+      file: 'dist/graph-scout.js',
       format: 'cjs'
     },
     plugins: [typescript()]
