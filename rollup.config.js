@@ -6,7 +6,8 @@ export default [
     input: 'src/index.ts',
     output: {
       file: 'dist/graph-scout.js',
-      format: 'cjs'
+      format: 'umd',
+      name: "graphScout"
     },
     plugins: [typescript()]
   }
