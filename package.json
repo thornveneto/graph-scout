@@ -1,6 +1,6 @@
 {
   "name": "graph-scout",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Basic graph traversal tools",
   "main": "./dist/graph-scout.js",
   "typings": "./dist/graph-scout.d.ts",
