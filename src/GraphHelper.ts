@@ -1,27 +1,11 @@
-import { _adjacentListMapRecordItem } from "./types";
-import { GraphDataAccess } from "./types";
-
-export type SearchConfigFilterFunction = (inputPk: string) => boolean;
-
-export interface BFSSearchConfig {
-  finishVertexByPK?: SearchConfigFilterFunction;
-  vertexFilterByPK?: SearchConfigFilterFunction;
-  edgeFilterByPK?: SearchConfigFilterFunction;
-  boundaryVertexFilterByPK?: SearchConfigFilterFunction;
-  ignoreDirectionality: boolean;
-}
-
-export interface _VISITED_ITEM {
-  _ID: string;
-  _FROM: string | null;
-  _LINK: string | null;
-  _BOUNDARY: boolean;
-}
-
-export interface _ADJACENT_VERTEX {
-  _ID: string;
-  _LINK: string;
-}
+import {
+  GraphDataAccess,
+  BFSSearchConfig,
+  SearchConfigFilterFunction,
+  _adjacentListMapRecordItem,
+  _ADJACENT_VERTEX,
+  _VISITED_ITEM
+} from "./types";
 
 export class GraphHelper<V, E> {
   gda: GraphDataAccess<V, E>;

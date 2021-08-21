@@ -5,26 +5,87 @@
 ```ts
 
 // @public (undocumented)
+export interface _ADJACENT_VERTEX {
+    // (undocumented)
+    _ID: string;
+    // (undocumented)
+    _LINK: string;
+}
+
+// @public (undocumented)
+export interface _adjacentListMapRecordItem {
+    // (undocumented)
+    isBidirectional: boolean;
+    // (undocumented)
+    linkId: string;
+    // (undocumented)
+    reverseFlag: boolean;
+}
+
+// @public (undocumented)
+export interface BFSSearchConfig {
+    // (undocumented)
+    boundaryVertexFilterByPK?: SearchConfigFilterFunction;
+    // (undocumented)
+    edgeFilterByPK?: SearchConfigFilterFunction;
+    // (undocumented)
+    finishVertexByPK?: SearchConfigFilterFunction;
+    // (undocumented)
+    ignoreDirectionality: boolean;
+    // (undocumented)
+    vertexFilterByPK?: SearchConfigFilterFunction;
+}
+
+// @public (undocumented)
+export interface GraphDataAccess<V, E> {
+    // (undocumented)
+    edgeGetFromValue: (edgePk: string) => string;
+    // (undocumented)
+    edgeGetToValue: (edgePk: string) => string;
+    // (undocumented)
+    edgeIsEdgeDirectional: (edgePk: string) => boolean;
+    // (undocumented)
+    getAllEdgesKeys: () => Array<string>;
+    // (undocumented)
+    getAllVerticeKeys: () => Array<string>;
+    // Warning: (ae-forgotten-export) The symbol "_adjacentListMapRecord" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    getLinkedVerticesMap: (pkValue: string) => _adjacentListMapRecord;
+    // (undocumented)
+    getVertexByPk: (pkValue: string) => V;
+    // (undocumented)
+    isDirectionalEdgeBiDirectional: (edgePk: string) => boolean;
+}
+
+// @public (undocumented)
 export class GraphHelper<V, E> {
     constructor(gda: GraphDataAccess<V, E>);
-    // Warning: (ae-forgotten-export) The symbol "SearchConfigFilterFunction" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "_ADJACENT_VERTEX" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     adjacentVertices(nodePk: string, vertexFilterByPK: SearchConfigFilterFunction | undefined, edgeFilterByPK: SearchConfigFilterFunction | undefined, ignoreDirectionality: boolean): _ADJACENT_VERTEX[];
-    // Warning: (ae-forgotten-export) The symbol "BFSSearchConfig" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "_VISITED_ITEM" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     BFS(startNodePk: string, searchConfig: BFSSearchConfig): (Map<string, _VISITED_ITEM> | null)[];
-    // Warning: (ae-forgotten-export) The symbol "GraphDataAccess" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     gda: GraphDataAccess<V, E>;
     // (undocumented)
     linksBetweenTwoVertexSets(aSet: Set<string>, zSet: Set<string>, ignoreDirection: boolean): Set<string>;
     // (undocumented)
     traceVisitedMapPathAtoZ(visitedMap: Map<string, _VISITED_ITEM>, aPk: string, zPk: string): Map<any, any>;
+}
+
+// @public (undocumented)
+export type SearchConfigFilterFunction = (inputPk: string) => boolean;
+
+// @public (undocumented)
+export interface _VISITED_ITEM {
+    // (undocumented)
+    _BOUNDARY: boolean;
+    // (undocumented)
+    _FROM: string | null;
+    // (undocumented)
+    _ID: string;
+    // (undocumented)
+    _LINK: string | null;
 }
 
 // (No @packageDocumentation comment for this package)

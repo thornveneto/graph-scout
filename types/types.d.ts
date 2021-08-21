@@ -1,3 +1,21 @@
+export declare type SearchConfigFilterFunction = (inputPk: string) => boolean;
+export interface BFSSearchConfig {
+    finishVertexByPK?: SearchConfigFilterFunction;
+    vertexFilterByPK?: SearchConfigFilterFunction;
+    edgeFilterByPK?: SearchConfigFilterFunction;
+    boundaryVertexFilterByPK?: SearchConfigFilterFunction;
+    ignoreDirectionality: boolean;
+}
+export interface _VISITED_ITEM {
+    _ID: string;
+    _FROM: string | null;
+    _LINK: string | null;
+    _BOUNDARY: boolean;
+}
+export interface _ADJACENT_VERTEX {
+    _ID: string;
+    _LINK: string;
+}
 export declare type _llFromVertexId = string;
 export declare type _llToVertexId = string;
 export declare type _llLinkId = string;
