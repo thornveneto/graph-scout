@@ -13,6 +13,12 @@ export interface _ADJACENT_VERTEX {
 }
 
 // @public (undocumented)
+export type _adjacentListMap = Map<_llFromVertexId, _adjacentListMapRecord>;
+
+// @public (undocumented)
+export type _adjacentListMapRecord = Map<_llToVertexId, _adjacentListMapRecordItem>;
+
+// @public (undocumented)
 export interface _adjacentListMapRecordItem {
     // (undocumented)
     isBidirectional: boolean;
@@ -48,8 +54,6 @@ export interface GraphDataAccess<V, E> {
     getAllEdgesKeys: () => Array<string>;
     // (undocumented)
     getAllVerticeKeys: () => Array<string>;
-    // Warning: (ae-forgotten-export) The symbol "_adjacentListMapRecord" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     getLinkedVerticesMap: (pkValue: string) => _adjacentListMapRecord;
     // (undocumented)
@@ -72,6 +76,15 @@ export class GraphHelper<V, E> {
     // (undocumented)
     traceVisitedMapPathAtoZ(visitedMap: Map<string, _VISITED_ITEM>, aPk: string, zPk: string): Map<any, any>;
 }
+
+// @public (undocumented)
+export type _llFromVertexId = string;
+
+// @public (undocumented)
+export type _llLinkId = string;
+
+// @public (undocumented)
+export type _llToVertexId = string;
 
 // @public (undocumented)
 export type SearchConfigFilterFunction = (inputPk: string) => boolean;
