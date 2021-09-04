@@ -21,7 +21,7 @@ export type _adjacentListMapRecord = Map<_llToVertexId, _adjacentListMapRecordIt
 // @public (undocumented)
 export interface _adjacentListMapRecordItem {
     // (undocumented)
-    isBidirectional: boolean;
+    isBidirectional: boolean | null;
     // (undocumented)
     linkId: string;
     // (undocumented)
@@ -43,7 +43,22 @@ export interface BFSSearchConfig {
 }
 
 // @public (undocumented)
+export class GraphAdjacencyMap<V, E> {
+    constructor(gda: GraphDataAccess<V, E>);
+    // (undocumented)
+    addAdjacencyMapRecord: (linkId: string, fromId: string, toId: string, reverseFlag: boolean) => void;
+    // (undocumented)
+    adjacentListMap: _adjacentListMap;
+    // (undocumented)
+    gda: GraphDataAccess<V, E>;
+}
+
+// @public (undocumented)
 export interface GraphDataAccess<V, E> {
+    // (undocumented)
+    addEdge: (edgeData: Partial<E>) => string;
+    // (undocumented)
+    addVertex: (vertexData: Partial<V>) => string;
     // (undocumented)
     edgeGetFromValue: (edgePk: string) => string;
     // (undocumented)
