@@ -1,6 +1,8 @@
 export { GraphHelper } from "./GraphHelper";
+export { GraphAdjacencyMap } from "./GraphAdjacencyMap";
 export {
   GraphDataAccess,
+  
   BFSSearchConfig,
   SearchConfigFilterFunction,
   _adjacentListMapRecordItem,

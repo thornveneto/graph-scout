@@ -26,7 +26,7 @@ export type _llLinkId = string;
 
 export interface _adjacentListMapRecordItem {
   linkId: string;
-  isBidirectional: boolean;
+  isBidirectional: boolean | null;
   reverseFlag: boolean;
 };
 export type _adjacentListMapRecord = Map<_llToVertexId, _adjacentListMapRecordItem>;
@@ -45,4 +45,8 @@ export interface GraphDataAccess<V, E> {
 
   edgeIsEdgeDirectional: (edgePk: string) => boolean;
   isDirectionalEdgeBiDirectional: (edgePk: string) => boolean;
+
+  // Mutation operations
+  addVertex: (vertexData: Partial<V>) => string;
+  addEdge: (edgeData: Partial<E>) => string;
 }
