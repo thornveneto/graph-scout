@@ -24,11 +24,12 @@ export type _llFromVertexId = string;
 export type _llToVertexId = string;
 export type _llLinkId = string;
 
-export interface _adjacentListMapRecordItem {
-  linkId: string;
+export interface _adjacentListMapLinkItem {
   isBidirectional: boolean | null;
   reverseFlag: boolean;
-};
+}
+
+export type _adjacentListMapRecordItem = Map<_llLinkId, _adjacentListMapLinkItem>;
 export type _adjacentListMapRecord = Map<_llToVertexId, _adjacentListMapRecordItem>;
 export type _adjacentListMap = Map<_llFromVertexId, _adjacentListMapRecord>;
 

@@ -19,11 +19,11 @@ export interface _ADJACENT_VERTEX {
 export declare type _llFromVertexId = string;
 export declare type _llToVertexId = string;
 export declare type _llLinkId = string;
-export interface _adjacentListMapRecordItem {
-    linkId: string;
+export interface _adjacentListMapLinkItem {
     isBidirectional: boolean | null;
     reverseFlag: boolean;
 }
+export declare type _adjacentListMapRecordItem = Map<_llLinkId, _adjacentListMapLinkItem>;
 export declare type _adjacentListMapRecord = Map<_llToVertexId, _adjacentListMapRecordItem>;
 export declare type _adjacentListMap = Map<_llFromVertexId, _adjacentListMapRecord>;
 export interface GraphDataAccess<V, E> {

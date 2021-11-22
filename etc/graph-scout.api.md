@@ -18,15 +18,10 @@ export type _adjacentListMap = Map<_llFromVertexId, _adjacentListMapRecord>;
 // @public (undocumented)
 export type _adjacentListMapRecord = Map<_llToVertexId, _adjacentListMapRecordItem>;
 
+// Warning: (ae-forgotten-export) The symbol "_adjacentListMapLinkItem" needs to be exported by the entry point index.d.ts
+//
 // @public (undocumented)
-export interface _adjacentListMapRecordItem {
-    // (undocumented)
-    isBidirectional: boolean | null;
-    // (undocumented)
-    linkId: string;
-    // (undocumented)
-    reverseFlag: boolean;
-}
+export type _adjacentListMapRecordItem = Map<_llLinkId, _adjacentListMapLinkItem>;
 
 // @public (undocumented)
 export interface BFSSearchConfig {

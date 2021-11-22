@@ -24,29 +24,32 @@ export class GraphHelper<V, E> {
     // TODO: Assumption: only one link is supported at the moment
     let mappedData: Array<_ADJACENT_VERTEX> = [];
 
-    this.gda.getLinkedVerticesMap(nodePk).forEach((linkRecordValueItem: _adjacentListMapRecordItem, keyAkaVertexId: string) => {
+    this.gda.getLinkedVerticesMap(nodePk).forEach((linkRecord: _adjacentListMapRecordItem, keyAkaVertexId: string) => {
 
-      let filterFlag = true;
+      linkRecord.forEach((linkRecordValueItem, linkId) => {
+        let filterFlag = true;
 
-      if (ignoreDirectionality) {
-        filterFlag = true;
-      } else if (linkRecordValueItem.reverseFlag && (linkRecordValueItem.isBidirectional === null || linkRecordValueItem.isBidirectional)){
-        filterFlag = true;
-      } else if (linkRecordValueItem.reverseFlag) {
-        filterFlag = false;
-      }
+        if (ignoreDirectionality) {
+          filterFlag = true;
+        } else if (linkRecordValueItem.reverseFlag && (linkRecordValueItem.isBidirectional === null || linkRecordValueItem.isBidirectional)){
+          filterFlag = true;
+        } else if (linkRecordValueItem.reverseFlag) {
+          filterFlag = false;
+        }
 
-      if (filterFlag && edgeFilterByPK) {
-        //filter flag is decorative here
-        filterFlag = edgeFilterByPK(linkRecordValueItem.linkId);
-      }
-      if (filterFlag && vertexFilterByPK) {
-        filterFlag = vertexFilterByPK(keyAkaVertexId);
-      }
+        if (filterFlag && edgeFilterByPK) {
+          //filter flag is decorative here
+          filterFlag = edgeFilterByPK(linkId);
+        }
+        if (filterFlag && vertexFilterByPK) {
+          filterFlag = vertexFilterByPK(keyAkaVertexId);
+        }
 
-      if (filterFlag) {
-        mappedData.push({_ID: keyAkaVertexId, _LINK: linkRecordValueItem.linkId});
-      }
+        if (filterFlag) {
+          mappedData.push({_ID: keyAkaVertexId, _LINK: linkId});
+        }
+
+      });
     });
  
     return mappedData;
@@ -58,21 +61,26 @@ export class GraphHelper<V, E> {
     aSet.forEach((setItem: string) => {
       // TODO: add more logical treatment of ignore directionality
 
-      this.gda.getLinkedVerticesMap(setItem).forEach((linkRecordValueItem: _adjacentListMapRecordItem, keyAkaVertexId: string) => {        
-        if (zSet.has(keyAkaVertexId)) {
-          if (ignoreDirection) {
-            resultSet.add(linkRecordValueItem.linkId);
-          } else if (linkRecordValueItem.isBidirectional) {
-            resultSet.add(linkRecordValueItem.linkId);
-          } else if (linkRecordValueItem.isBidirectional === null) {
-            resultSet.add(linkRecordValueItem.linkId);
-          } else if (/*not bidirectional*/linkRecordValueItem.reverseFlag === false){
-            resultSet.add(linkRecordValueItem.linkId);
-          } else {
-            // do nothing
+      this.gda.getLinkedVerticesMap(setItem).forEach((linkRecord: _adjacentListMapRecordItem, keyAkaVertexId: string) => {        
+
+        linkRecord.forEach((linkRecordValueItem, linkId) => {
+
+          if (zSet.has(keyAkaVertexId)) {
+            if (ignoreDirection) {
+              resultSet.add(linkId);
+            } else if (linkRecordValueItem.isBidirectional) {
+              resultSet.add(linkId);
+            } else if (linkRecordValueItem.isBidirectional === null) {
+              resultSet.add(linkId);
+            } else if (/*not bidirectional*/linkRecordValueItem.reverseFlag === false){
+              resultSet.add(linkId);
+            } else {
+              // do nothing
+            }
+            
           }
-          
-        }
+        });
+
       });
     });
 

@@ -13,18 +13,24 @@ export class GraphAdjacencyMap<V, E> {
 
   addAdjacencyMapRecord = (linkId: string, fromId: string, toId: string, reverseFlag: boolean) => {
 
+    const linkData = {
+      isBidirectional: this.gda.edgeIsEdgeDirectional(linkId) ? this.gda.isDirectionalEdgeBiDirectional(linkId) : null,
+      reverseFlag: reverseFlag
+  }
+
     if (!this.adjacentListMap.has(fromId)) {
-      this.adjacentListMap.set(fromId, new Map([[toId, {
-        linkId: linkId, 
-        isBidirectional: this.gda.edgeIsEdgeDirectional(linkId) ? this.gda.isDirectionalEdgeBiDirectional(linkId) : null,
-        reverseFlag: reverseFlag
-      }]]));
+      this.adjacentListMap.set(fromId, new Map([[toId, new Map([[linkId, linkData ]]) ]]));
     } else {
-      this.adjacentListMap.get(fromId)!.set(toId, {
-        linkId: linkId, 
-        isBidirectional: this.gda.edgeIsEdgeDirectional(linkId) ? this.gda.isDirectionalEdgeBiDirectional(linkId) : null,
-        reverseFlag: reverseFlag
-      });
+      const fromMap =this.adjacentListMap.get(fromId);
+
+      if (fromMap!.has(toId)) {
+          fromMap!.get(toId)!.set(
+              linkId, 
+              linkData
+          );
+      } else {
+          fromMap!.set(toId, new Map([[linkId, linkData ]]));
+      }
     }
   }
 }
